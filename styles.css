@@ -1,0 +1,112 @@
+h1 {
+    font-family: arial black, sans-serif;
+    text-transform: uppercase;
+    font-size: 40px;
+    text-align:center
+   }
+p {
+    font-family: arial, sans-serif;
+    text-align:center    
+ }
+ h2 {
+    font-family: arial, sans-serif;
+    text-align:center
+ }
+ h3 {
+    font-family: arial k, sans-serif;
+    text-align:center
+ }
+h4 {
+    font-family: arial, sans-serif;
+     text-align:center
+ }
+h5 {
+    font-family: arial, sans-serif;
+     text-align:center
+ }
+ dl {
+    font-family: arial, sans-serif;
+    text-align:left;
+ }
+ ol {
+    font-family: arial, sans-serif;
+    text-align: center;
+    list-style-position: inside;
+}
+ body {margin:0;}
+ .box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: flex;
+        align-items: center;        
+    }
+    .box h2{
+        font-family: arial, sans-serif;
+        text-transform: uppercase;
+        font-size: 20px;
+        text-align:center
+    }
+    .box a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .box img {
+        max-width: 200px; 
+        max-height: 200px; 
+        margin-right: 10px;
+    }
+    img.center {
+        display: block;
+        margin: 0 auto;
+    }
+    img:hover {
+    box-shadow:0 0 2px 1px rgba(0, 140, 186, 0.5);
+    }
+    ul.navbar{    
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;  
+        align-items: center;
+        display:flex;
+        
+    }
+    ul.navbar li{
+        float: left;
+        align-items: center;
+        font-family: arial black, sans-serif;
+        color:white;
+        text-transform: uppercase;
+    }
+    ul.navbar li a{
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    ul.navbar li:hover{
+        background-color: #ccc;
+    }
+    ul.navbar .logo{
+        font-family: arial black, sans-serif;
+        color:white;
+        font-size:20px;
+        padding:0;
+        float:left;
+        background-color: #333;
+        align-items: center;
+        padding: 14px 16px;     
+    }
+    ul.navbar .logo:hover{
+        background-color: #333;
+    }
+    .active {
+        background-color: #6CACE4;
+      }    
