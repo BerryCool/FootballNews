@@ -1,67 +1,176 @@
 <!DOCTYPE html>
-<html lang ="en">
-<head>
-    <title>Football Times - Contact </title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
+<html lang="en">
+    <head>
+        <title>Football Times - Messi Free Kick Winner</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            .custom-hr {
+            width: 800px;
+            border: 1px solid #000; 
+        }
         .container {
+            width: 800px;
+            margin: 0 auto; 
+        }
+        table{
             font-family: arial, sans-serif;
             width: 800px;
             margin: 0 auto; 
-            text-align: left;
-        } 
-        input[type=text], select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
+            border : 1px solid black;
         }
-        input[type=submit] {
-            background-color: #6CACE4;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        table, th, td {
+            border: 1px solid #000; 
         }
-     </style>   
-</head>
-<body>
-        <ul class = "navbar">
-            <li class ="logo">FOOTBALL TIMES</li>
-            <li><a href="FootballNewsMain.html">Home</a></li>
-            <li><a href="About.html">About</a></li>
-            <li class = "active"><a href="Contact.html">Contact Us</a></li>
-            <li><a href="Submit.html">Submit an article</a></li>
-        </ul>
-<div style="padding:20px;margin-top:30px;background-color:#ffffff;">
-    <h1>Football Times</h1>
-    <h2>Contact Us</h2>
-    <div class="container">
-    <p>Have a question? Want to get in touch? Fill out the form below and we will get back to you as soon as possible!</p>
-    <form action="contact.php" method="post">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name"><br><br>
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name"><br><br>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Your email"><br><br>
-        <label for="content">Content</label>
-        <textarea id="content" name="content" placeholder="Message" style="height:200px"></textarea><br><br>
-        <label for="type">Inquiry type</label>
-        <select id="type" name="type">
-            <option value="general">General</option>
-            <option value="press">Legal</option>
-            <option value="business">Business</option>
-            <option value="feedback">Business</option>
-        </select>
-        <input type="submit" value="Submit" onclick = "window.location.href='Received.html'; return false;">
-    </form>
-</div>
-<p>For press concerns: Please <a href="mailto:caarlosberry@trentu.ca">email us</a>.</p>
-</div>
-</body>
+     </style>          
+    </head>      
+    <body>
+            <ul class = "navbar">
+                <li class ="logo">FOOTBALL TIMES</li>
+                <li><a href="FootballNewsMain.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
+                <li><a href="Submit.html">Submit an article</a></li>
+            </ul>
+            <div style="padding:20px;margin-top:30px;background-color:#ffffff;">
+            <h1>Football Times</h1>
+            <h2>Messi Scores Free-Kick to Win Final In Inter Miami Debut</h2>
+            <p> Author: Carlos Berry</p>
+            <p>Last modified: 10-16-2023</p>
+            <a target="_blank" href="messimiami.png"> <img class="center" src="messimiami.png" alt="messimiami" style="width:600px"></a>    
+        <div class="container">
+            <h5><i>Nothing beats seeing Lionel Messi score one of his classic free kick goals. Fans paid hundreds to see him
+                live, and it looks like they got their money's worth.</i></h5>
+            <hr class="custom-hr">  
+            <p>The beautiful game's greatest of all time, Lionel Messi, has done it again. After a somehwat difficult 2 years at Paris SG, Messi 
+                <a href = "https://www.youtube.com/watch?v=pORjd5ZkTrs" target="_blank">showed us</a> why Inter Miami spent over $100 million USD to have him on their side.</p>
+            <h3>A hard year at the office</h3>
+            <p>After spending 2 years at Paris Saint-Germain, many were worried if Messi's career was coming to an end. See the following table of Messi's stats at PSG compared to players of a similar caliber for the 2021-2022 season:</p> 
+            <table>
+                <tr>
+                    <th>Player</th>
+                    <th>Club</th>
+                    <th>Appearances</th>
+                    <th>Goals</th>
+                    <th>Assists</th>
+                    <th>Minutes per Goal</th>
+                    <th>Minutes Played</th>
+                </tr>
+                <tr>
+                    <td>Lionel Messi</td>
+                    <td>Paris Saint-Germain</td>
+                    <td>34</td>
+                    <td>11</td>
+                    <td>15</td>
+                    <td>261'</td>
+                    <td>2,873'</td>
+                </tr>
+                <tr>
+                    <td>Kylian Mbappe</td>
+                    <td>Paris Saint-Germain</td>
+                    <td>46</td>
+                    <td>39</td>
+                    <td>26</td>
+                    <td>100'</td>
+                    <td>3,903'</td>
+                </tr>
+                <tr>
+                    <td>Erling Haaland</td>
+                    <td>Borussia Dortmund</td>
+                    <td>30</td>
+                    <td>29</td>
+                    <td>8</td>
+                    <td>82'</td>
+                    <td>2,388'</td>
+                </tr>
+                <tr>
+                    <td>Karim Benzema</td>
+                    <td>Real Madrid</td>
+                    <td>46</td>
+                    <td>44</td>
+                    <td>15</td>
+                    <td>89'</td>
+                    <td>3,919'</td>
+                </tr>
+                <tr>
+                    <td>Kevin De Bruyne</td>
+                    <td>Manchester City</td>
+                    <td>45</td>
+                    <td>19</td>
+                    <td>14</td>
+                    <td>176'</td>
+                    <td>3,338'</td>
+                </tr>
+                <tr>
+                    <td>Vinicius Jr</td>
+                    <td>Real Madrid</td>
+                    <td>52</td>
+                    <td>22</td>
+                    <td>20</td>
+                    <td>194'</td>
+                    <td>4,274'</td>
+                </tr>
+                <tr>
+                    <td>Robert Lewandowski</td>
+                    <td>Bayern Munich</td>
+                    <td>46</td>
+                    <td>50</td>
+                    <td>7</td>
+                    <td>87'</td>
+                    <td>4,006'</td>
+                </tr>
+                <tr>
+                    <td>Sadio Mane</td>
+                    <td>Liverpool</td>
+                    <td>51</td>
+                    <td>23</td>
+                    <td>5</td>
+                    <td>171'</td>
+                    <td>3,938'</td>
+                </tr>
+            </table>
+            <h4><i>All stats gathered from <a href = "https://www.transfermarkt.us" target = "_blank">www.transfermarket.us</a></i></h4>
+            <p>As you can see, Messi's stats are not impressive compared to other players of a similar caliber. With the lowest goal per minute ratio, low playing time, and low assists (very unlike messi), it was clear he was not having a good time at PSG.</p>
+            <p>With unimpressive stats, and
+                a power struggle between him and other teamates, it seemed like Messi was on his way out. However, Inter Miami had other plans.</p>
+            <h3>Inter Miami's new star</h3>
+            <p>After spending over $100 million USD on <a href="#la-pulga">"La Pulga"</a>, Inter Miami made a gamble that Messi's career was in fact, not done. 
+                This gamble certainly paid off, as Messi worked wonderse against Mexican club Crus Azul in a Legends Cup match.
+            </p>
+            <h3>A quiet game</h3>
+            <p>It was a relatively quiet game for Miami v. Cruz Azul. Miami was one goal up, but this would not last. In the second half Azul Crus was gaining momentum, and the horizon didn't look good. </p>
+            <h3>Messi enters the chat</h3>
+            <p>Eight minutes into the second half the crowd roared. If you weren't paying attention, you may be wondering why, as nothing significant had happened, yet. Miami was winning 1-0 and the play was dead. 
+                However, if you kept listening, you would hear the crowd chanting - "Messi!.. Messi!.. Messi!". It was time for the <a href="#GOAT">GOAT</a> to take to the pitch.
+            </p>
+            <h3>Messi reminds us why he's the seven-time Ballon d'Or winner</h3>
+            <img src="messifreekick.jpg" alt="messi">
+            <p>After an uneventful second half, the game was coming to a close of regular time. Crus Azul had equalized, and up until now, Messi was unable to tip Miami over the edge. However, in the <i>91st minute</i>, with zero minutes to spare,
+                Inter Miami pushed one last time for a last-second attack. With only 4 attackers against 8 defenders, it look impossible for Miami to break through, but thats when Messi does what he does best.
+                After receiving a pass from #17 Jose Martinez, an agressive tackle on Messi allowed him to draw a foul, being awarded a free kick about 22 meters from goal.</p>
+            <p>With over 2 full-sized school bus lengths between him and the goal, it looked like a longshot, but Messi had done this <i>many</i> times before. And in the 94th minute Messi lines up the ball,
+                takes aim, and hammers the ball into the top-left shelf of the goal - well beyond the outstretched goalkeepers reach. He had done the unthinkable once again!
+            </p>
+            <p>With no time left, the referee called an end to the match, fans roaring and Crus Azul players heartbroken. It was a true spectacle, and reminded us why Lionel Messi is the greatest of all time.</p>
+            <h4>Terms used in this article:</h4>
+            <dl>
+                <dt id="la-pulga">La Pulga</dt>
+                <dd>Spanish for "The Flea", a nickname given to Messi due to his small stature and agility.</dd>
+                <dt id = "GOAT">GOAT</dt>
+                <dd>Acronym for "Greatest of All Time"</dd>
+                <dt id = "Ballon-d'Or">Ballon d'Or</dt>
+                <dd>French for "Golden Ball", an award given to the best player in the world each year.</dd>
+                <dt id = "joins">Enters the chat</dt>
+                <dd>A humorous term to describe the summoning of a person with a significant relations to a given topic.</dd>
+            </dl>
+        </div>
+
+        <div class="box">
+            <img src="messimiami.png" alt="messimiami">
+            <a href="https://www.nytimes.com/2023/05/03/sports/soccer/lionel-messi-suspension-psg.html" target="_blank">
+                <h4>Relevant Article: How Messi’s Marriage With P.S.G. Fell Apart | NY Times </h4>
+            </a>
+        </div>
+        <hr>
+    </div>
+    </body>
 </html>
