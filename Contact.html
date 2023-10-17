@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html lang ="en">
+<head>
     <title>Football Times - Contact </title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-    h1 {
-        font-size: 40px;
-        text-align:center
-       }
-    P {
-        text-align:center
-     }
-     h2 {
-        text-align:center
-     }
-     h3 {
-        text-align:center
-     }
-     .box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .box img {
-            max-width: 300px; 
-            max-height: 300px; 
-            margin-right: 10px;
-        }
         .container {
+            font-family: arial, sans-serif;
             width: 800px;
             margin: 0 auto; 
-            text-align: center;
+            text-align: left;
         } 
-       </style>  
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+        input[type=submit] {
+            background-color: #6CACE4;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+     </style>   
 </head>
 <body>
-    <header>
-        <ul style="list-style-type: none; padding: 0; text-align:center;">
-            <li style="display: inline; margin-right: 10px;"><a href="FootballNewsMain.html">Home</a></li>
-            <li style="display: inline; margin-right: 10px;"><a href="About.html">About</a></li>
-            <li style="display: inline; margin-right: 10px;"><a href="Contact.html">Contact Us</a></li>
-            <li style="display: inline;"><a href="Submit.html">Submit an article</a></li>
+        <ul class = "navbar">
+            <li class ="logo">FOOTBALL TIMES</li>
+            <li><a href="FootballNewsMain.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li class = "active"><a href="Contact.html">Contact Us</a></li>
+            <li><a href="Submit.html">Submit an article</a></li>
         </ul>
-        <hr>
-        <h1>Football Times</h1>
-        <h2>Contact Us</h2>
-    </header>
-<div class="container">
+<div style="padding:20px;margin-top:30px;background-color:#ffffff;">
+    <h1>Football Times</h1>
+    <h2>Contact Us</h2>
+    <div class="container">
     <p>Have a question? Want to get in touch? Fill out the form below and we will get back to you as soon as possible!</p>
     <form action="contact.php" method="post">
         <label for="fname">First Name</label>
@@ -56,9 +51,17 @@
         <input type="text" id="email" name="email" placeholder="Your email"><br><br>
         <label for="content">Content</label>
         <textarea id="content" name="content" placeholder="Message" style="height:200px"></textarea><br><br>
-        <input type="submit" value="Submit" onclick = "window.location.href='Contact.html'; return false;">
+        <label for="type">Inquiry type</label>
+        <select id="type" name="type">
+            <option value="general">General</option>
+            <option value="press">Legal</option>
+            <option value="business">Business</option>
+            <option value="feedback">Business</option>
+        </select>
+        <input type="submit" value="Submit" onclick = "window.location.href='Received.html'; return false;">
     </form>
 </div>
 <p>For press concerns: Please <a href="mailto:caarlosberry@trentu.ca">email us</a>.</p>
+</div>
 </body>
 </html>
