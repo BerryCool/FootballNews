@@ -2,48 +2,8 @@
 <html lang="en">
     <head>
         <title>Football Times - Messi Free Kick Winner</title>
+        <link rel="stylesheet" href="styles.css">
         <style>
-        h1 {
-            font-size: 40px;
-            text-align:center
-           }
-        p {
-            font-size: 18px;
-            text-align:center
-         }
-         h2 {
-            text-align:center
-         }
-         h3 {
-            font-size: 25px;
-            text-align:center
-         }
-         h5{
-            width:800px;
-            text-align:center;
-            margin: 0 auto;
-         }
-         .box {
-                border: 1px solid #ccc;
-                padding: 10px;
-                display: flex;
-                align-items: center;
-                max-width: 800px; 
-                max-height: 50px;
-                margin: 0 auto;
-            } 
-            .box img {
-                max-width: 300px; 
-                max-height: 50px; 
-                margin-right: 10px;
-            }
-            img.center {
-                display: block;
-                margin: 0 auto;
-            }
-            img:hover {
-	        box-shadow:0 0 2px 1px rgba(0, 140, 186, 0.5);
-            }
             .custom-hr {
             width: 800px;
             border: 1px solid #000; 
@@ -53,6 +13,7 @@
             margin: 0 auto; 
         }
         table{
+            font-family: arial, sans-serif;
             width: 800px;
             margin: 0 auto; 
             border : 1px solid black;
@@ -60,27 +21,29 @@
         table, th, td {
             border: 1px solid #000; 
         }
-     </style>           
-    </head>        
+     </style>
+           
+    </head>
+        
     <body>
-        <header>
-            <ul style="list-style-type: none; padding: 0; text-align:center;">
-                <li style="display: inline; margin-right: 10px;"><a href="FootballNewsMain.html">Home</a></li>
-                <li style="display: inline; margin-right: 10px;"><a href="About.html">About</a></li>
-                <li style="display: inline; margin-right: 10px;"><a href="Contact.html">Contact Us</a></li>
-                <li style="display: inline;"><a href="Submit">Submit an article</a></li>
+            <ul class = "navbar">
+                <li class ="logo">FOOTBALL TIMES</li>
+                <li><a href="FootballNewsMain.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
+                <li><a href="Submit.html">Submit an article</a></li>
             </ul>
-            <hr>
+            <div style="padding:20px;margin-top:30px;background-color:#ffffff;">
             <h1>Football Times</h1>
             <h2>Messi Scores Free-Kick to Win Final In Inter Miami Debut</h2>
             <p> Author: Carlos Berry</p>
             <p>Last modified: 10-16-2023</p>
             <a target="_blank" href="messimiami.png"> <img class="center" src="messimiami.png" alt="messimiami" style="width:600px"></a>
-            <h5>Nothing beats seeing Lionel Messi score one of his classic free kick goals. Fans paid hundreds to see him
-            live, and it looks like they got their money's worth.</h5>
-            <hr class="custom-hr">  
-        </header>
+            
         <div class="container">
+            <h5><i>Nothing beats seeing Lionel Messi score one of his classic free kick goals. Fans paid hundreds to see him
+                live, and it looks like they got their money's worth.</i></h5>
+            <hr class="custom-hr">  
             <p>The beautiful game's greatest of all time, Lionel Messi, has done it again. After a somehwat difficult 2 years at Paris SG, Messi 
                 <a href = "https://www.youtube.com/watch?v=pORjd5ZkTrs" target="_blank">showed us</a> why Inter Miami spent over $100 million USD to have him on their side.</p>
             <h3>A hard year at the office</h3>
@@ -169,7 +132,7 @@
                 </tr>
             </table>
             <h4><i>All stats gathered from <a href = "https://www.transfermarkt.us" target = "_blank">www.transfermarket.us</a></i></h4>
-            <p>As you can see, Messi's stats are not impressive compared to other players of a similar caliber. With the lowest goal per minute ratio, low playing time, and low assists (very unlike Messi), it was clear he was not having a good time at PSG.</p>
+            <p>As you can see, Messi's stats are not impressive compared to other players of a similar caliber. With the lowest goal per minute ratio, low playing time, and low assists (very unlike messi), it was clear he was not having a good time at PSG.</p>
             <p>With unimpressive stats, and
                 a power struggle between him and other teamates, it seemed like Messi was on his way out. However, Inter Miami had other plans.</p>
             <h3>Inter Miami's new star</h3>
@@ -203,6 +166,7 @@
                 <dd>A humorous term to describe the summoning of a person with a significant relations to a given topic.</dd>
             </dl>
         </div>
+
         <div class="box">
             <img src="messimiami.png" alt="messimiami">
             <a href="https://www.nytimes.com/2023/05/03/sports/soccer/lionel-messi-suspension-psg.html" target="_blank">
@@ -210,5 +174,6 @@
             </a>
         </div>
         <hr>
+    </div>
     </body>
 </html>
