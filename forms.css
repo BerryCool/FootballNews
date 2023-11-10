@@ -1,0 +1,278 @@
+.container {
+    font-family: arial, sans-serif;
+    width: 800px;
+    margin: 0 auto; 
+    text-align: left;
+} 
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+input[type=submit] {
+    background-color: #6CACE4;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type=email], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+input[type=password], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+.emailclick{
+    margin-top:0;
+}
+
+.auth{
+    padding-left:30%;
+    padding-right: 30%;
+}
+h4{
+    font-size: 16px;
+    font-weight: lighter;
+    color:rgb(115, 115, 115);
+    padding-left:30%;
+    padding-right: 30%;
+}
+
+.splitscreen{
+    width:50%; 
+    display:flex;
+    flex-direction: column;
+    height:100%;
+    min-height:120vh;
+    float:right;
+    background-image:url(images/zig-zag-bg.svg),
+    linear-gradient(#00dbc1, #163ad8);
+    background-size:cover;
+}
+.splitscreensub{
+    margin: auto;
+    z-index: 0;
+    background-color:white;
+    border-radius: 2rem;
+    padding: 40px 40px 40px 40px;
+    max-width: 300px;
+    display:block;
+}
+.splitscreensub h3{
+    font-size:16px;
+}
+.splitscreensub p{
+    line-height: 22px;
+    font-size:14px;
+    color:1a1a1a;
+    text-align:center;
+}
+
+.splitscreenleft{
+    width:50%; 
+    display:flex;
+    flex-direction: column;
+    padding-top:70px;
+}
+
+#panel {
+display:none;
+margin-bottom: 50px;;
+  }
+  .loginmethod{
+    margin: auto;
+    margin-top:275px;
+    z-index: 0;
+    background-color:white;
+    border-radius: 2rem;
+    padding: 40px 40px 40px 40px;
+    max-width: 300px;
+    display:block;
+    text-align: left;
+  }
+  .loginmethod h3{
+    font-size:25px;
+}
+.loginmethod p{
+    line-height: 25px;
+    font-size:14px;
+    color: #1a1a1a;
+    text-align:center;
+}
+.emailbutton{
+    border:0px solid white;
+    width:50px;
+    height:50px;
+    border-radius: 20%;
+    padding:10px 10px 10px 10px;
+    box-shadow: none;
+    cursor: pointer;
+    margin:5px;
+}
+.loginimg:hover{
+    box-shadow: none;
+}
+
+.loginimg{
+    width: 23px;
+    height: 23px;
+}
+
+.loginimgdiv{
+    height:50px;
+    text-align: center;
+}
+.profileLine{
+    padding:25px 25px 25px 50px;
+    max-height:100%;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+.profileLine ul{
+    list-style-type: none;
+    padding:0;
+}
+.profileLine h3{
+    text-align: left;
+    padding:0;
+    color:#1a1a1a;
+    line-height:20px;
+    margin-bottom:10px;
+    font-weight: 300;
+}
+.profileLine h4{
+    
+    text-align: left;
+    padding-left:0;
+    color:black;
+    font-weight: bold;
+    font-size:20px;
+    margin-top:5px;
+    font-weight: 550;
+}
+.profileLine li{
+    float: left;
+    font-size:16px;
+    color:#6d6a7f;
+    max-height: 16px;
+    padding: 6px 8px;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.active li{
+    color: black;
+}
+
+.accountsettings{
+    text-align: center;
+}
+.accountsettings button{
+    margin-top:10px;
+    border:none;
+    border-radius: 5px;
+    width:200px;
+    height:50px;
+    background-color:#eeeeee;
+}
+@keyframes button{
+    from {background-color: eeeeee;color:black;}
+    to {background-color: #6d6a7f;color:white}
+}
+
+.accountsettings button:hover{
+
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards ;
+    cursor:pointer;
+}
+#pwdwindow{
+    padding: 50px;
+    display:none;
+}
+.accountlist{
+    display: inline;
+}
+
+.editClubList li{
+    border:1px solid grey;
+    padding:5px;
+    border-radius: 5px;
+    margin-top:10px;
+    width:fit-content;
+    
+}
+
+.editClubList{
+    list-style-type: none;
+}
+
+ img.deleteLiItem{
+    border:none;
+    width:10px;
+    height:10px;
+    box-shadow: none;
+    background-color: none;
+}
+
+button.deleteLiItem{
+    background-color:white;
+    color:none;
+    border:none;
+    width:fit-content;
+    height:fit-content;
+    cursor:pointer;
+}
+.accountinfo{
+    margin-left:50px;
+    max-width: fit-content;
+}
+.accountinfo p{
+    margin:10px 0px;
+    display:inline-block;
+
+}
+#addClub{
+    Margin:10px 0px; 
+    padding:5px 5px;
+    margin-left:0;
+    border:1px;
+    border-radius:5px;
+    cursor:pointer;
+    background-color: rgb(226, 226, 226);
+}
+#addClubConf{
+    Margin-left:10px; 
+    padding:5px 5px;
+    border:1px;
+    border-radius:5px;
+    cursor:pointer;
+    background-color: rgb(226, 226, 226);
+}
+#clublist{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.actSettings{
+    border:none;
+    font-size:18px;
+    background-color: white;
+    text-transform:uppercase;
+    cursor:pointer;
+}

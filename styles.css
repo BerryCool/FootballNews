@@ -35,8 +35,7 @@ h4 {
     }
  body {
     margin:0;
-    
-   
+    overflow-y: scroll;
     }
 
  .box {
@@ -75,23 +74,24 @@ h4 {
     }
 
     ul.navbar{    
+        z-index: 1;
         list-style-type: none;
-        margin: 0 auto;
+        margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: #333;
+        background-color: #1A1A1A;
         position: fixed;
         top: 0;
+        height:70px;
         width: 100%;  
         align-items: center;
         display:flex;
-        
     }
 
     ul.navbar li{
         float: left;
         align-items: center;
-        font-family: arial black, sans-serif;
+        font-family:arial, sans-serif;
         color:white;
         text-transform: uppercase;
     }
@@ -104,34 +104,71 @@ h4 {
         text-decoration: none;
     }
 
-    ul.navbar li:hover{
-        background-color: #ccc;
-    }
+
     ul.navbar .logo{
-        font-family: arial black, sans-serif;
+        font-family: Arial black;
         color:white;
-        font-size:20px;
+        font-size:18px;
         padding:0;
         float:left;
-        background-color: #333;
         align-items: center;
-        padding: 14px 16px;
-        
-        
-    }
-    ul.navbar .logo:hover{
-        background-color: #333;
+        font-weight:bold;
     }
     .active {
         background-color: #6CACE4;
       }
-      div.maindiv{
-        padding:20px;
-        margin-top:30px; 
-        background-image: url('background.jpg');
-        
+      .maindiv{    
+        margin-top:80px; 
+        /* background-image: url('images/background.jpg'); */
       }
       
+      .auth-links {
+        margin-left:auto;
+        padding:14px 16px;
+    }
+    .authbuttons{
+        font-family:arial, sans-serif;
+        font-size:16px;
+        align-items: center;
+        text-transform: uppercase;
+        justify-content: center;
+        margin-left: 1rem;
+        padding: .75rem 1.2rem;
+        border:1px solid;
+        border-radius: .25rem;
+        cursor:pointer;
+        border:.5px solid;
+        height:45px;
+        max-width:100px;
+    }
+    .regbutton{
+        background-color: #6CACE4;
+        border-radius: 4px;
+        color:white;
+        border:none;
+        padding: 10px 10px 10px 10px;
+        cursor:pointer;
+    }
+    .signinbtn{
+        font-family:arial, sans-serif;
+        color:white;
+        font-size:16px;
+        align-items: center;
+        text-transform: uppercase;
+        justify-content: center;
+        margin-left: 1rem;
+        padding: .75rem 1.2rem;
+        border:.5px solid;
+        border-radius: .25rem;
+        cursor:pointer;
+        height:45px;
+        max-width:120px;
+        background-color:#1A1A1A;
+    }
+    .auth label{
+        font-family: arial;
+    }
+
         
 
     

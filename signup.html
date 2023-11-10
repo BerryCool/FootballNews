@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <Title>Football News Signup Page</Title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href = "forms.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script> 
+            $(document).ready(function(){
+              $("#flip").click(function(){
+                $("#panel").slideToggle("slow");
+              });
+            });
+                function enableSubmit(){
+                    if(document.getElementById("read").checked)
+                    {
+                        document.getElementById("submitbtn").style.backgroundColor = "Black";
+                        document.getElementById("submitbtn").disabled = false;
+                        document.getElementById("submitbtn").style.cursor = "pointer";
+                    }
+                    else{
+                        document.getElementById("submitbtn").style.backgroundColor = "Grey";
+                        document.getElementById("submitbtn").disabled = true;
+                        document.getElementById("submitbtn").style.cursor = "not-allowed";
+                    }
+                    
+                    } 
+
+                function verify() {
+                document.getElementById("read").disabled = false;
+                }
+
+            </script>
+        <style>
+            
+        </style>
+    </head>
+
+    <body>
+        <ul class = "navbar">
+            <li class = "logo"> <a href="FootballNewsMain.html">Football Times</a></li>
+            <li><a href="FootballNewsMain.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Contact.html">Contact Us</a></li>
+            <li><a href="Submit.html">Submit an article</a></li>
+            <div class="auth-links">
+                <li><button class = signinbtn id ="signinbtn" onclick="location.href='login.html'" type="button">Sign In</button></li>
+                <li><button id = "joinbtn" class = authbuttons onclick="location.href='signup.html'" type="button">Join</button></li>
+            </div>
+        </ul>
+            <div class = "splitscreen">
+
+                <div class = splitscreensub>
+                    <h3>Stay Connected</h3>
+                    <p>Never miss a goal, card, or highlight no matter where you are. Stay up to date with live transfer news, tables, and upcoming games.</p>
+                    <h3>Watch Your Favourite Teams Lives</h3>
+                    <p>With access to tons of football streams, you'll never have to resort to cable again. With competetive pricing plans, we'll make sure you never have to break the bank for pay-per-view again.</p>
+                </div>
+
+            </div>
+
+        <div class = splitscreenleft>
+            <div class = loginmethod>
+                <h3>New here?</h3>
+                <p>Use one of the following methods to create your account.<p>
+                    <div class = loginimgdiv>
+                    <button id = "flip" class="emailbutton"><img class = loginimg alt="emailicon" src="Images/email-icon.svg"></button>
+                    <button class="emailbutton"><img class = loginimg alt="gmail" src="Images/google-icon-logo.svg"></button></div>
+                    <br>
+                    <hr style="border-width: .5px;">
+                    <p>Already have an account? <a href = "login.html">Sign In</a></p>
+            </div>
+
+            <div class =emailclick id ="panel">
+                <script type="module">
+                    // Import the functions you need from the SDKs you need
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+                    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+                    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+                    
+                    // TODO: Add SDKs for Firebase products that you want to use
+                    // https://firebase.google.com/docs/web/setup#available-libraries
+                  
+                    // Your web app's Firebase configuration
+                    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                    const firebaseConfig = {
+                      apiKey: "AIzaSyCwn0mCEBL51ptCq33Km_BUU0BmyqV3ZGw",
+                      authDomain: "football-news-10757.firebaseapp.com",
+                      projectId: "football-news-10757",
+                      storageBucket: "football-news-10757.appspot.com",
+                      messagingSenderId: "219707443622",
+                      appId: "1:219707443622:web:710736758cbc0c055c2767",
+                      measurementId: "G-SFXKB9VE8D"
+                    };
+                    function accountLink(){
+                        location.href = "account.html";
+                    }
+                    // Initialize Firebase
+                    const app = initializeApp(firebaseConfig);
+                    const analytics = getAnalytics(app);
+                    const auth = getAuth(app);
+                    onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        const uid = user.uid;
+                        console.log("signed in");
+                        console.log(user.email);
+
+                        document.getElementById("joinbtn").hidden=true;
+
+                        var signinbtn = document.getElementById("signinbtn");
+                        signinbtn.textContent = "Account";
+                        signinbtn.onclick = function() {
+                        location.href = "account.html";   
+                         }
+                   
+                    } else {}
+                    });
+                    window.addEventListener('DOMContentLoaded', (event) => {
+                    document.getElementById('signup-form').addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        const email = document.getElementById('email').value;
+                        const password = document.getElementById('password').value;
+                            createUserWithEmailAndPassword(auth, email, password)
+                            .then((userCredential) => {
+                                // Signed in.
+                                const user = userCredential.user;
+                                console.log(user);
+                                window.location.href = "success.html";
+                            })
+                            .catch((error) => {
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                                // ..
+                                console.error("Error: ", errorCode, errorMessage);
+                                if (errorCode == "auth/weak-password")
+                                {
+                                    alert("Password must be at least 6 characters.");
+                                }
+                                else{
+                                    alert(error.code);
+                                }
+                                
+                            });
+                        });
+                    });
+                    
+                  </script>
+
+                  <form class = "auth" id="signup-form">
+                    <label for="email">Email:</label><br>
+                    <input type ="email" id ="email" required><br>
+                    <label for="password">Password:</label><br>
+                    <input type ="password" id ="password" required><br><br>
+                    <input type = "checkbox" id = "read" disabled onclick = "enableSubmit()" title ="You must read the terms and conditions.">
+                    <label for = "read">I accept the <a id="termslink" onclick = "verify()" href = "termsandconditions.html" target="_blank">Terms and Conditions</a></label><br>
+                    <input type = "checkbox" id = "updates">
+                    <label for = "updates">I would like to be kept in loop with the latest football news.</label><br><br>
+                    <input type = "submit" id = "submitbtn" value ="Submit" style ="background-color:grey; cursor:not-allowed;width: 100%;" disabled>
+                  </form>
+            </div>
+
+        </div>
+        
+
+    </body>
+</html>

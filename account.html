@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Football Times - Account Dashboard</title>
+        <link rel ="stylesheet" href = "styles.css">
+        <link rel ="stylesheet" href = "forms.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>src="https://code.jquery.com/jquery-3.7.0.js"</script>
+        <script>
+
+            // Functions to show various <div> sections of the page and hide others
+
+            function showSecurity(){
+                document.getElementById("accountinfo").hidden = true;
+                document.getElementById("security").hidden = false;
+            }
+
+            function showAccount(){
+                document.getElementById("security").hidden = true;
+                document.getElementById("accountinfo").hidden = false;
+            }
+
+            // Animation for reset password section slide
+            $(document).ready(function(){
+            $("#changebtn").click(function(){
+                $("#pwdwindow").slideToggle("slow");
+            });
+            });
+
+            function editAccountInfo(){
+                document.getElementById("accountinfodisplay").hidden=true;
+                document.getElementById("editaccountinfo").hidden=false;
+            }
+            // If cancel button pressed for changing account info
+            function cancelEdit(){
+                document.getElementById("editaccountinfo").hidden=true;
+                document.getElementById("accountinfodisplay").hidden=false;
+                
+            }
+
+            // Used to strikethrough the club elements to be deleted
+            function wrap(index){
+              const index1 =  document.getElementById(index);
+                $("#index").wrap("<s>");
+            }
+        </script>
+    </head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+                    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+                    import { getDatabase, ref, child, get, set, push, query, orderByChild, DataSnapshot, update, onValue } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+                    import { getAuth, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+        
+                    // TODO: Add SDKs for Firebase products that you want to use
+                    // https://firebase.google.com/docs/web/setup#available-libraries
+        
+                    // Your web app's Firebase configuration
+                    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyCwn0mCEBL51ptCq33Km_BUU0BmyqV3ZGw",
+                        authDomain: "football-news-10757.firebaseapp.com",
+                        projectId: "football-news-10757",
+                        storageBucket: "football-news-10757.appspot.com",
+                        messagingSenderId: "219707443622",
+                        appId: "1:219707443622:web:710736758cbc0c055c2767",
+                        measurementId: "G-SFXKB9VE8D"
+                    };
+                    function accountLink(){
+                        location.href = "account.html";
+                    }
+                    // Initialize Firebase
+                    const app = initializeApp(firebaseConfig);
+                    const db = getDatabase(app);
+                    const dbRef = ref(getDatabase());
+                    const analytics = getAnalytics(app);
+                    const auth = getAuth(app);
+                    const user = auth.currentUser;
+
+                    // If auth state changed -> Most of my functions with firebase are in here - albeit VERY disorganized and all over the place
+                    // If I would have had this done sooner it would have looked alot better, but since its so late I'm not worried about this a whole lot
+                    onAuthStateChanged(auth, (user) => {
+                    if (user) {
+
+                        // Defines various constants used in script
+                        const uid = user.uid;
+                        const userName = user.name;
+                        const userEmail = document.createTextNode(user.email);
+                        const editEmail = userEmail.cloneNode(true);
+                        const clubRef = ref(db,`users/${uid}/Clubs`);
+
+                        // Defined keylist and clublist, used to find items to delete in Club list
+                        // This is probably an inefficient way to do this, but it works
+                        var KeyList = [];
+                        var ClubsList =[];
+
+                        // If auth state signals someone is logged in, we hide the sign in and sign up button and show account button
+                        document.getElementById("joinbtn").hidden=true;
+                        var signinbtn = document.getElementById("signinbtn");
+                        signinbtn.textContent = "Account";
+
+                        // Queries database for info
+                        get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+                            if (snapshot.exists()) {
+
+                            // Setting and cloning data so we can add them to the account info side and edit account info side
+                            const data = snapshot.val();
+
+                            // Username
+                            const userName = document.createTextNode(data.username);
+                            const cloneUser = userName.cloneNode(true);
+
+                            //Email
+                            const userEmail = document.createTextNode(user.email);
+                            const cloneEmail = userEmail.cloneNode(true);
+
+                            // Nationality
+                            const nationality = document.createTextNode(data.nationality);
+                            const cloneNation = nationality.cloneNode(true);
+
+                            //biography
+                            const biography = document.createTextNode(data.biography);
+                            const cloneBio = biography.cloneNode(true);
+
+                            //Appending elements in the account info side
+                            document.getElementById("welcomeUser").appendChild(cloneUser);
+                            document.getElementById("userName").appendChild(userName);
+                            document.getElementById("userEmail").appendChild(userEmail);
+                            document.getElementById("nationality").appendChild(cloneNation);
+                            document.getElementById("biography").appendChild(cloneBio);
+
+                            //setting elements in edit info side
+                            document.getElementById("editUser").value = data.username;
+                            document.getElementById("editEmail").appendChild(editEmail);
+                            document.getElementById("editNationality").value = data.nationality;
+                            document.getElementById("editBio").value = data.biography;
+
+                            // Adding data to Keylist[] and ClubsList[] arrays as declared earlier
+                            onValue(clubRef, (snapshot)=>{
+                                        snapshot.forEach(function(childSnapshot){
+                                            var key=childSnapshot.key;
+                                            var data = childSnapshot.val();
+                                            KeyList.push(key);
+                                            ClubsList.push(data);
+                                        }
+                                        )
+                                    });
+
+                            // Gets snapshot of club list, we are going to do some crazy weird stuff coming up!
+                            get(child(dbRef, `users/${uid}/Clubs`)).then((snapshot) => {
+                                if(snapshot.exists()){
+                                    const clubinfo = snapshot.val();
+                                    console.log(clubinfo);
+
+                                    // Loops through the club list and adds them to the account info side list
+                                    for (let i =0; i<ClubsList.length;i++)
+                                    {
+                                        const node = document.createElement("li");
+                                        const textnode = document.createTextNode(ClubsList[i]);
+                                        node.appendChild(textnode);
+                                        document.getElementById("clublist").appendChild(node);
+                                    }
+                                    
+                                    // constructs a special type of <li> within the club list on the edit account info side.
+                                    // Basically every item is surrounded by a border, with an x next to it so you can click to delete said item
+                                    for (let i =0; i<ClubsList.length;i++)
+                                    {
+                                        // Creates button element, then defines class and attributes
+                                        const btn = document.createElement("button");
+                                        btn.className="deleteLiItem";
+                                        btn.setAttribute("id",ClubsList[i]);
+                                        btn.setAttribute("type", "button");
+
+                                        //Creates image element, defines class and sets src url, the source being an svg of an X
+                                        const img = document.createElement("img");
+                                        img.className = "deleteLiItem";
+                                        img.setAttribute("src","images/x-symbol-svgrepo-com.svg");
+
+                                        // Appends the image tag we created as the value inside the button
+                                        btn.appendChild(img);
+
+                                        // Now we create the li element, assigning the ClubList[i] value to it
+                                        const node = document.createElement("li");
+                                        const textnode = document.createTextNode(ClubsList[i]);
+
+                                        // Now we append the text, then the button into the li value
+                                        node.appendChild(textnode);
+                                        node.appendChild(btn);
+
+                                        // Finally, we add the entire consutrcted li to the list
+                                        document.getElementById("editClubList").appendChild(node);
+
+                                        // Basically, what I just added was something like <li> *text* <Button><img src= *source*> </button> </li>
+
+                                        document.getElementById(ClubsList[i]).addEventListener('click', function(){deleteClub(ClubsList[i])});
+                                    } 
+                                }
+                             });
+
+                            } 
+                            
+                            }).catch((error) => {
+                            console.error(error);
+                            });
+                            
+
+                                signinbtn.onclick = function() {
+                                location.href = "account.html";   
+                                    }
+
+                                // Function to sign user out    
+                                document.getElementById("signoutbtn").onclick = function(){
+                                signOut(auth).then(() => {
+                                // Sign-out successful.
+                                alert("Log out successful.");
+                                location.href="FootballNewsMain.html";
+                                }).catch((error) => {
+                                // An error happened.
+                                });
+                            };
+
+                            // Confirms account changes
+                            document.getElementById("changeinfo").addEventListener('click', (event) => {
+                                
+                                // Gets all elements in form
+                                const editUser = document.getElementById("editUser").value;
+                                const editNationality = document.getElementById("editNationality").value;
+                                const editBio = document.getElementById("editBio").value;
+
+                                // Updates values of said elements OTHER THAN club values, we need to handle this in another convoluted way
+                                update(ref(db, 'users/' + uid), {
+                                    username: editUser,
+                                    nationality: editNationality,
+                                    biography:editBio
+                                });
+
+                                // if the list of clubs to be deleted isnt null
+                                if (deleteClubIndex[0]!=null){
+
+                                    // Uses nested for loop to compare the two arrays - the list of nodes to delete and the list of nodes
+                                    // This is not an efficient way to sort the data, but for now it will do
+                                    
+                                    // hopefully y'all dont add too many clubs because this function is exponential
+                                    for (let i = 0; i<ClubsList.length;i++)
+                                    {
+                                        for (let j = 0; j<deleteClubIndex.length;j++){
+                                            if (deleteClubIndex[j]==ClubsList[i]){
+                                                update(clubRef,{
+                                                    [KeyList[i]]:null
+                                                })
+                                                console.log(KeyList[i]);
+                                            }
+                                        }
+                                    }
+                                }
+                                alert("Account info changed.");
+                            });
+                            var deleteClubIndex = [];
+                            
+                            // Adds club to list of clubs to be deleted and wraps the li text in <s> to show its set to be deleted
+                                // if user hits cancel before save  the delete does not go through
+                            function deleteClub(index){
+                                console.log("deleted: "+ index);
+                                var wrap = document.createElement("s");
+                                var target = document.getElementById(index);
+                                target = target.parentNode;
+                                target.parentNode.replaceChild(wrap, target);
+                                wrap.appendChild(target);
+                                var exists = false;
+
+                                for (let i = 0; i<deleteClubIndex.length;i++){
+                                    
+                                    if (deleteClubIndex[i]==index)
+                                    {
+                                        exists=true;
+                                    }
+                                }
+
+                                if (exists == true){
+                                    console.log("Node exists");                       
+                                 }
+                                else{
+                                    deleteClubIndex.push(index);   
+                                }
+                                console.log(deleteClubIndex.length);
+                            }
+
+                            
+                            //Adds club
+                            document.getElementById("addClub").addEventListener('click', (event)=>{
+                                let input = prompt("Enter club:");
+                                console.log(input);
+                                var i = ClubsList.length;
+                                console.log(i);
+                                if (input == null){
+                                }
+                                else{
+
+                                    update(clubRef,{
+                                            [i]:input
+                                    });
+                                    window.location.reload();
+
+                                }
+                            })
+
+                            // Sends password reset email
+                            document.getElementById("resetpwd").addEventListener('click',(event)=>{
+                                sendPasswordResetEmail(auth, user.email).then(()=>{
+                                    alert("Password reset instructions sent to your email.");
+                                    $("#pwdwindow").slideToggle("slow");
+                                }).catch((error)=>{
+                                    alert(error);
+                                })
+                            });
+                            
+                                
+                    } else {}
+                    });
+        </script>
+
+    <ul class = "navbar">
+        <li class = "logo"> <a href="FootballNewsMain.html">Football Times</a></li>
+        <li><a href="FootballNewsMain.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+        <li><a href="Submit.html">Submit an article</a></li>
+        <div class="auth-links">
+            <li><button class = signinbtn id ="signinbtn" onclick="location.href='login.html'" type="button">Sign In</button></li>
+            <li><button id = "joinbtn" class = authbuttons onclick="location.href='signup.html'" type="button">Join</button></li>
+        </div>
+    </ul>
+
+    <div class = "maindiv">
+        <div class = profileLine>
+            <h3>Welcome,</h3>
+            <h4 id = "welcomeUser"></h4>
+            <ul>
+                <li><button class = "actSettings" onclick="showAccount()">Account</button></li>
+                <li><button class = "actSettings" onclick="showSecurity()">Security</button></li>
+            </ul>
+        </div>
+        <hr style = "margin-left:50px; margin-right: 50px; box-shadow: 2px;">
+    </div>
+    <div id="accountinfo">
+        <h3>Account Settings</h3>
+        <div  id = "editaccountinfo" class = "accountinfo" hidden>
+            <form>
+                <label for="editUser" >Username: </label><br>
+                <input type ="text" id ="editUser"><br>
+
+                <p class = "accountlist"> Email: <p class = "accountlist" id= "editEmail"></p></p><br>
+
+                <label for = "editNationality">Nationality: </label><br>
+                <input type = "text" id ="editNationality"><br>
+
+                <label for = "editClubs">Favourite Clubs:</label>
+                <ul id = "editClubList" class = "editClubList">
+                </ul>
+                <button id = "addClub" type="button"> Add Club</button><br>
+
+                <label for = "editBio">Biograpy: </label>
+                <textarea id = editBio></textarea>
+
+                <button id = "changeinfo" class = "regbutton" style= "background-color: black;">
+                    Save
+                </button>
+
+                <button class = "regbutton" style= "background-color: black;" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+        
+        <div class = "accountinfo" id = "accountinfodisplay">
+            <p class = "accountlist" id = "userName">Username: </p> <br>
+            <p class = "accountlist" id= "userEmail">Email: </p><br>
+            <p class = "accountlist" id="nationality">Nationality: </p> </p><br>
+            <p class = "accountlist">Favourite Clubs: 
+                <ul id = "clublist">
+                </ul></p>
+            <p class = "accountlist" id = "biography">About me: </p><br><br>
+        
+            <button class = "regbutton" style= "background-color: black;" onclick="editAccountInfo()">Edit Info</button>
+        </div>
+        
+    </div>
+    <div id = "security" class = "accountsettings" hidden>
+        <h3>
+            Account Security
+        </h3>
+        <button id = "changebtn">
+            Change password
+        </button>
+        <div id ="pwdwindow" style ="max-width: 800px; margin:0 auto; text-align: left;">
+
+                <form class = "auth" id="changepw-form">
+                    <label for="resetemail">Enter current email:</label><br>
+                    <input type ="email" id ="resetemail" required><br>
+                    <button id = "resetpwd" style = "background-color:rgb(0, 0, 0);color:white;width:100%;" type ="button">
+                        Reset Password
+                    </button>
+                </form> 
+
+        </div>
+        <br>
+        <button id = "signoutbtn">
+            Sign out
+        </button>
+    </div>
+
+</body>
+</html>

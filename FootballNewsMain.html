@@ -3,19 +3,64 @@
 <head>
     <title>Football Times - Home</title>
     <link rel="stylesheet" href="styles.css">
-    
-       
 </head>
-
 <body>
-
-        <ul class = "navbar">
-            <li> <a href="FootballNewsMain.html"> <img src="LOGO.png" alt="logo" style="width:175px; height: auto;"></a></li>
-            <li class = "active"><a href="FootballNewsMain.html">Home</a></li>
-            <li><a href="About.html">About</a></li>
-            <li><a href="Contact.html">Contact Us</a></li>
-            <li><a href="Submit.html">Submit an article</a></li>
-        </ul>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwn0mCEBL51ptCq33Km_BUU0BmyqV3ZGw",
+            authDomain: "football-news-10757.firebaseapp.com",
+            projectId: "football-news-10757",
+            storageBucket: "football-news-10757.appspot.com",
+            messagingSenderId: "219707443622",
+            appId: "1:219707443622:web:710736758cbc0c055c2767",
+            measurementId: "G-SFXKB9VE8D"
+        };
+        function accountLink(){
+            location.href = "account.html";
+        }
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            console.log("signed in");
+            console.log(user.email);
+        
+            document.getElementById("joinbtn").hidden=true;
+        
+            var signinbtn = document.getElementById("signinbtn");
+            signinbtn.textContent = "Account";
+            signinbtn.onclick = function() {
+            location.href = "account.html";   
+                }
+        
+        } else {}
+        });
+        </script>
+    <ul class = "navbar">
+        <li class = "logo"> <a href="FootballNewsMain.html">Football Times</a></li>
+        <li><a href="FootballNewsMain.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+        <li><a href="Submit.html">Submit an article</a></li>
+        <div class="auth-links">
+            <li><button class = signinbtn id ="signinbtn" onclick="location.href='login.html'" type="button">Sign In</button></li>
+            <li><button id = "joinbtn" class = authbuttons onclick="location.href='signup.html'" type="button">Join</button></li>
+        </div>
+        
+    </ul>
         
     <div class = "maindiv">
         
@@ -23,7 +68,7 @@
         <h3>Welcome to Football Times, your source for all news football!</h3>
         <h2>Top News</h2>
         <div class="box">
-        <img src="messimiami.png" alt="messimiami">
+        <img src="images/messimiami.png" alt="messimiami">
         <a href="MessiFreeKickDebut.html">
             <h2>Messi Scores Free-Kick to Win Final In Inter Miami Debut | Football Times</h2>
         </a>
@@ -31,28 +76,28 @@
         <br>
         
         <div class="box">
-            <img src="brussels.png" alt="brussels">
+            <img src="images/brussels.png" alt="brussels">
             <a href="https://onefootball.com/en/news/belgium-and-swedens-euro-qualifier-abandoned-after-shootings-in-brussels-38398365" target ="_blank">
                 <h2>Belgium and Sweden Euro Qualifier Adbondoned After Shootings in Brussels | OneFootball</h2>
             </a>
             </div>
             <br>
             <div class="box">
-                <img src="canadawomens.jpg" alt="canadawomens">
+                <img src="images/canadawomens.jpg" alt="canadawomens">
                 <a href="https://canadasoccer.com/news/canada-soccer-womens-national-team-back-on-home-soil-to-play-brazil-in-montreal-and-halifax/" target ="_blank">
                     <h2>Canada Women's National Team on home soil to play Brazil | Canada Soccer</h2>
                 </a>
                 </div>
                 <br>
              <div class="box">
-                 <img src="ireland.png" alt="ireland">
+                 <img src="images/ireland.png" alt="ireland">
                  <a href="https://www.vavel.com/en-us/soccer/2023/10/16/1159277-gibraltar-vs-irelandlive-updates-score-stream-info-lineups-and-how-to-watch-euro-2024-qualification-match.html" target ="_blank">
                      <h2>Highlights and goals of Gibraltar 0-4 Ireland in Euro 2024 Qualifying | Vavel </h2>
                  </a>
                  </div>
                  <br>
                  <div class="box">
-                    <img src="messimiami.png" alt="messimiami">
+                    <img src="images/messimiami.png" alt="messimiami">
                     <a href="https://www.nytimes.com/2023/05/03/sports/soccer/lionel-messi-suspension-psg.html" target="_blank">
                         <h2>How Messi’s Marriage With P.S.G. Fell Apart | NY Times </h2>
                     </a>

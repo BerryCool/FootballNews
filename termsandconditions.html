@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Terms and Conditions</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!DOCTYPE html>
+<html>
+<body>
+    
+    <ul class = "navbar">
+        <li class = "logo"> <a href="FootballNewsMain.html">Football Times</a></li>
+        <li><a href="FootballNewsMain.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+        <li><a href="Submit.html">Submit an article</a></li>
+        <div class="auth-links">
+            <li><button class = signinbtn id ="signinbtn" onclick="location.href='login.html'" type="button">Sign In</button></li>
+            <li><button id = "joinbtn" class = authbuttons onclick="location.href='signup.html'" type="button">Join</button></li>
+        </div>
+
+        </ul>
+        <div id = "buttondiv" style = "margin:auto; text-align: center; padding-top:80px;">
+            <button id = "buttonclick" style = "width: 300px; height:90px;background-color: #6CACE4; border:none;  box-shadow: none; border-radius: 8px; cursor:pointer; color:white;">Click here to view terms and conditions.</button>
+            
+        </div>
+<div id = "videodiv" style = "margin:auto; text-align: center; padding-top:80px;" hidden>
+    <video id = "Video" width="720" height="540" controls>
+        <source src="Images/rickroll.mp4" type="video/mp4" autoplay>
+        <source src="movie.ogg" type="video/ogg">
+      </video>
+</div>
+<script>
+
+
+        function start(){    
+        let vid = document.getElementById("Video");
+        vid.volume = 0.05;
+        document.getElementById("buttondiv").hidden = true;
+        document.getElementById("videodiv").hidden = false;
+        vid.play();
+             }      
+        
+        const button = document.getElementById("buttonclick");
+        button.addEventListener('click', start);
+</script>
+
+
+
+
+</body>
+</html>

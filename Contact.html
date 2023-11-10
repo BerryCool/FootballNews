@@ -3,49 +3,73 @@
 <head>
     <title>Football Times - Contact </title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .container {
-            font-family: arial, sans-serif;
-            width: 800px;
-            margin: 0 auto; 
-            text-align: left;
-        } 
-        input[type=text], select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-        }
-        input[type=submit] {
-            background-color: #6CACE4;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    
-        </style>
+    <link rel="stylesheet" href = "forms.css">
        
 </head>
 
 <body>
-        <ul class = "navbar">
-            <li> <a href="FootballNewsMain.html"> <img src="LOGO.png" alt="logo" style="width:175px; height: auto;"></a></li>
-            <li><a href="FootballNewsMain.html">Home</a></li>
-            <li><a href="About.html">About</a></li>
-            <li class = "active"><a href="Contact.html">Contact Us</a></li>
-            <li><a href="Submit.html">Submit an article</a></li>
-        </ul>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCwn0mCEBL51ptCq33Km_BUU0BmyqV3ZGw",
+            authDomain: "football-news-10757.firebaseapp.com",
+            projectId: "football-news-10757",
+            storageBucket: "football-news-10757.appspot.com",
+            messagingSenderId: "219707443622",
+            appId: "1:219707443622:web:710736758cbc0c055c2767",
+            measurementId: "G-SFXKB9VE8D"
+        };
+        function accountLink(){
+            location.href = "account.html";
+        }
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            console.log("signed in");
+            console.log(user.email);
+        
+            document.getElementById("joinbtn").hidden=true;
+        
+            var signinbtn = document.getElementById("signinbtn");
+            signinbtn.textContent = "Account";
+            signinbtn.onclick = function() {
+            location.href = "account.html";   
+                }
+        
+        } else {}
+        });
+        </script>
+    <ul class = "navbar">
+        <li class = "logo"> <a href="FootballNewsMain.html">Football Times</a></li>
+        <li><a href="FootballNewsMain.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+        <li><a href="Submit.html">Submit an article</a></li>
+        <div class="auth-links">
+            <li><button class = signinbtn id ="signinbtn" onclick="location.href='login.html'" type="button">Sign In</button></li>
+            <li><button id = "joinbtn" class = authbuttons onclick="location.href='signup.html'" type="button">Join</button></li>
+        </div>
+        
+    </ul>
 <div class = "maindiv">
     <h1>Football Times</h1>
     <h2>Contact Us</h2>
     <div class="container">
     <p>Have a question? Want to get in touch? Fill out the form below and we will get back to you as soon as possible!</p>
-    <form action="contact.php" method="post">
+    <form>
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name"><br><br>
         <label for="lname">Last Name</label>

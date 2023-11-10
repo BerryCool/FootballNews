@@ -26,19 +26,68 @@
     </head>
         
     <body>
-            <ul class = "navbar">
-                <li> <a href="FootballNewsMain.html"> <img src="LOGO.png" alt="logo" style="width:175px; height: auto;"></a></li>
-                <li><a href="FootballNewsMain.html">Home</a></li>
-                <li><a href="About.html">About</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-                <li><a href="Submit.html">Submit an article</a></li>
-            </ul>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+            import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+            
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+            
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyCwn0mCEBL51ptCq33Km_BUU0BmyqV3ZGw",
+                authDomain: "football-news-10757.firebaseapp.com",
+                projectId: "football-news-10757",
+                storageBucket: "football-news-10757.appspot.com",
+                messagingSenderId: "219707443622",
+                appId: "1:219707443622:web:710736758cbc0c055c2767",
+                measurementId: "G-SFXKB9VE8D"
+            };
+            function accountLink(){
+                location.href = "account.html";
+            }
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            const auth = getAuth(app);
+            onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                console.log("signed in");
+                console.log(user.email);
+            
+                document.getElementById("joinbtn").hidden=true;
+            
+                var signinbtn = document.getElementById("signinbtn");
+                signinbtn.textContent = "Account";
+                signinbtn.onclick = function() {
+                location.href = "account.html";   
+                    }
+            
+            } else {}
+            });
+            </script>
+        <ul class = "navbar">
+            <li class = "logo"> <a href="FootballNewsMain.html">Football Times</a></li>
+            <li><a href="FootballNewsMain.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Contact.html">Contact Us</a></li>
+            <li><a href="Submit.html">Submit an article</a></li>
+            <div class="auth-links">
+                <li><button class = signinbtn id ="signinbtn" onclick="location.href='login.html'" type="button">Sign In</button></li>
+                <li><button id = "joinbtn" class = authbuttons onclick="location.href='signup.html'" type="button">Join</button></li>
+            </div>
+            
+        </ul>
             <div class = "maindiv">
             <h1>Football Times</h1>
             <h2>Messi Scores Free-Kick to Win Final In Inter Miami Debut</h2>
             <p> Author: Carlos Berry</p>
             <p>Last modified: 10-16-2023</p>
-            <img class="center" src="messimiami.png" alt="messimiami" style="width:600px" usemap ="#messimap">
+            <img class="center" src="images/messimiami.png" alt="messimiami" style="width:600px" usemap ="#messimap">
             <map name = "messimap">
                 <area shape="rect" coords="231,108,379,289" href="https://en.wikipedia.org/wiki/Inter_Miami_CF" target="_blank" >
                 <area shape="rect" coords = "239,11,306,91" href = "https://en.wikipedia.org/wiki/Lionel_Messi" target ="_blank">
@@ -153,7 +202,7 @@
                 However, if you kept listening, you would hear the crowd chanting - "Messi!.. Messi!.. Messi!". It was time for the <a href="#GOAT">GOAT</a> to take to the pitch.
             </p>
             <h3>Messi reminds us why he's the seven-time Ballon d'Or winner</h3>
-            <img src="messifreekick.jpg" alt="messi">
+            <img src="images/messifreekick.jpg" alt="messi">
             <p>After an uneventful second half, the game was coming to a close of regular time. Crus Azul had equalized, and up until now, Messi was unable to tip Miami over the edge. However, in the <i>91st minute</i>, with zero minutes to spare,
                 Inter Miami pushed one last time for a last-second attack. With only 4 attackers against 8 defenders, it look impossible for Miami to break through, but thats when Messi does what he does best.
                 After receiving a pass from #17 Jose Martinez, an agressive tackle on Messi allowed him to draw a foul, being awarded a free kick about 22 meters from goal.</p>
@@ -210,7 +259,7 @@
         </table>
 
         <div class="box">
-            <img src="messimiami.png" alt="messimiami">
+            <img src="images/messimiami.png" alt="messimiami">
             <a href="https://www.nytimes.com/2023/05/03/sports/soccer/lionel-messi-suspension-psg.html" target="_blank">
                 <h4>Relevant Article: How Messi’s Marriage With P.S.G. Fell Apart | NY Times </h4>
             </a>
