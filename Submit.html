@@ -3,7 +3,9 @@
     <title>Football Times - Submit </title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        
+        html{
+            overflow:auto;
+        }
         .list {
             text-align: left;  
         }
@@ -20,8 +22,33 @@
             margin: 0 auto; 
             text-align: center;
         }
+        iframe { 
+            display: block; 
+            width: 100%; 
+            border: none; 
+            overflow-y: auto; 
+            overflow-x: hidden; 
+            height:1000px;
+        } 
+
         </style>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(function () {
+                $('a').on("click", function (e) {
+                e.preventDefault();
+                });
+                $('a').hover(
+                    function(){
+                        $(this).css("border", "1px solid red");
+                    },
+                    function(){
+                        $(this).css("border", "none");
+                    }
+                );
+            });
+        </script>
        
 </head>
 <body>
@@ -102,7 +129,11 @@
         <li>Paste the raw text in the content box.</li>
         <li>Once approved, your article will be posted and you will be notified!</li>
     </ol>
+    
+        
+    </iframe>
        </div>
+       <iframe src = "Contact.html" allowfullscreen ></iframe>
        
        
     </div>
